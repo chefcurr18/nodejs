@@ -1,21 +1,26 @@
-const express = require('express');
-const path = require('path');
-const indexRouter = require('./routes/index');
+import express from "express";
+import cors from "cors";
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
-// Serve static files from the "public" directory
-app.use(express.static(path.join(__dirname, 'public')));
+// Middleware
+app.use(cors());
+app.use(express.json());
 
-// Use the router for handling routes
-app.use('/', indexRouter);
+// Simple test route
+app.get("/", (req, res) => {
+  res.send("🎵 Purdue Music App Backend is Live!");
+});
 
-// Catch-all route for handling 404 errors
-app.use((req, res, next) => {
-    res.status(404).sendFile(path.join(__dirname, 'views', '404.html'));
-  });
+// Example endpoint
+app.post("/feedback", (req, res) => {
+  const { name, message } = req.body;
+  console.log(`Feedback from ${name}: ${message}`);
+  res.json({ success: true, msg: "Thanks for your feedback!" });
+});
 
+// Start the server
 app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}/`);
+  console.log(`✅ Server running on port ${PORT}`);
 });
