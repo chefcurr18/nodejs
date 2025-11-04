@@ -1,14 +1,14 @@
 {
-  "name": "nodejs-app",
+  "name": "purdue-music-app",
   "version": "1.0.0",
-  "description": "A minimal Node.js web application.",
+  "description": "A simple backend for the Purdue music app",
   "main": "app.js",
-  "author": "alphasec",
-  "license": "MIT",
-  "dependencies": {
-    "express": "^4.19.2"
-  },
+  "type": "module",
   "scripts": {
     "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "cors": "^2.8.5"
   }
 }
